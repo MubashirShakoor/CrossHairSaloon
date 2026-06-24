@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cross Hair Studio | Premium Barber – Ghauri Town, Islamabad</title>
+<meta name="description" content="Islamabad's finest barbershop in Ghauri Town Phase 5. Expert haircuts, beard trims, face polishing & hair care. Book now by call or WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E2C97E;
+    --gold-dim: #8A6E2F;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --dark2: #1A1A1A;
+    --dark3: #222222;
+    --white: #F5F0E8;
+    --grey: #888880;
+    --border: rgba(201,168,76,0.2);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: .4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 6vw;
+    background: linear-gradient(to bottom, rgba(10,10,10,.95) 0%, transparent 100%);
+    backdrop-filter: blur(2px);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: .12em;
+    color: var(--gold);
+    text-decoration: none;
+    line-height: 1;
+  }
+  .nav-logo span { color: var(--white); }
+
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    color: var(--grey);
+    text-decoration: none;
+    font-size: .8rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    transition: color .25s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--black) !important;
+    padding: 9px 20px;
+    border-radius: 2px;
+    font-weight: 600 !important;
+    color: var(--black) !important;
+  }
+  .nav-cta:hover { background: var(--gold-light); color: var(--black) !important; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); transition: all .3s; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100svh;
+    display: flex; align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+    padding: 0 6vw 80px;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(160deg, rgba(10,10,10,.15) 0%, rgba(10,10,10,.6) 50%, rgba(10,10,10,.92) 100%),
+      url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1600&q=80') center/cover no-repeat;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: .7rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    margin-bottom: 20px;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+
+  .hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 9vw, 7rem);
+    line-height: .95;
+    font-weight: 900;
+    letter-spacing: -.01em;
+    margin-bottom: 24px;
+  }
+
+  .hero-content h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: rgba(245,240,232,.7);
+    max-width: 420px;
+    margin-bottom: 36px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold);
+    color: var(--black);
+    text-decoration: none;
+    padding: 15px 30px;
+    font-weight: 600;
+    font-size: .9rem;
+    letter-spacing: .05em;
+    border-radius: 2px;
+    transition: all .25s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-whatsapp {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent;
+    color: var(--white);
+    text-decoration: none;
+    padding: 15px 30px;
+    font-weight: 500;
+    font-size: .9rem;
+    letter-spacing: .05em;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 2px;
+    transition: all .25s;
+  }
+  .btn-whatsapp:hover { border-color: #25D366; color: #25D366; transform: translateY(-2px); }
+
+  .hero-rating {
+    position: absolute;
+    bottom: 80px; right: 6vw;
+    z-index: 2;
+    text-align: right;
+  }
+  .rating-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; }
+  .rating-label { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); margin-top: 4px; }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--gold);
+    overflow: hidden;
+    padding: 12px 0;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    animation: marquee 18s linear infinite;
+    width: max-content;
+  }
+  .marquee-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: .15em;
+    color: var(--black);
+    padding: 0 32px;
+    white-space: nowrap;
+  }
+  .marquee-dot { opacity: .5; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SECTIONS ── */
+  section { padding: 90px 6vw; }
+
+  .section-eyebrow {
+    font-size: .7rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .gold-line {
+    width: 48px; height: 2px;
+    background: var(--gold);
+    margin: 20px 0 40px;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--dark); }
+
+  .services-intro { max-width: 500px; }
+  .services-intro p { color: var(--grey); line-height: 1.8; margin-bottom: 50px; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2px;
+  }
+
+  .service-card {
+    background: var(--dark2);
+    padding: 36px 30px;
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--gold);
+    transition: width .4s;
+  }
+  .service-card:hover::before { width: 100%; }
+  .service-card:hover { background: var(--dark3); }
+
+  .service-icon {
+    font-size: 1.8rem;
+    margin-bottom: 18px;
+    display: block;
+  }
+
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .service-card p { color: var(--grey); font-size: .88rem; line-height: 1.7; }
+
+  /* ── ABOUT / GALLERY ── */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    padding: 90px 6vw;
+  }
+
+  .about-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 220px 220px;
+    gap: 10px;
+  }
+  .about-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .about-img-tall { grid-row: span 2; }
+
+  .about-text p { color: var(--grey); line-height: 1.8; margin-bottom: 16px; font-size: .95rem; }
+
+  .stat-row { display: flex; gap: 40px; margin-top: 36px; flex-wrap: wrap; }
+  .stat h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.6rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat p { font-size: .75rem; color: var(--grey); letter-spacing: .1em; text-transform: uppercase; margin-top: 4px; }
+
+  /* ── REVIEWS ── */
+  #reviews { background: var(--dark); }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2px;
+    margin-top: 50px;
+  }
+
+  .review-card {
+    background: var(--dark2);
+    padding: 32px 28px;
+    border-top: 1px solid var(--border);
+    position: relative;
+  }
+
+  .review-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--gold);
+    line-height: .6;
+    margin-bottom: 18px;
+    display: block;
+    opacity: .6;
+  }
+
+  .review-text {
+    font-size: .9rem;
+    color: rgba(245,240,232,.8);
+    line-height: 1.75;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .review-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .author-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    color: var(--black);
+    flex-shrink: 0;
+  }
+
+  .author-name { font-size: .85rem; font-weight: 600; }
+  .author-meta { font-size: .75rem; color: var(--grey); }
+
+  .review-stars { color: var(--gold); font-size: .8rem; margin-top: 4px; }
+
+  .google-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-size: .8rem;
+    color: var(--grey);
+    margin-top: 40px;
+  }
+  .google-g {
+    width: 20px; height: 20px;
+    background: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .75rem; font-weight: 700;
+    color: #4285F4;
+  }
+
+  /* ── BOOKING CTA ── */
+  #booking {
+    background:
+      linear-gradient(to right, rgba(10,10,10,.9) 40%, rgba(10,10,10,.6) 100%),
+      url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=1400&q=80') center/cover no-repeat;
+    text-align: left;
+    padding: 100px 6vw;
+  }
+
+  #booking h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 900;
+    max-width: 580px;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+
+  #booking p { color: rgba(245,240,232,.65); max-width: 420px; margin-bottom: 40px; line-height: 1.8; }
+
+  .booking-cards {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .booking-card {
+    background: rgba(26,26,26,.85);
+    border: 1px solid var(--border);
+    padding: 24px 28px;
+    border-radius: 2px;
+    min-width: 200px;
+    text-decoration: none;
+    transition: all .3s;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .booking-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .booking-card .bc-label { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--grey); }
+  .booking-card .bc-value { font-size: 1.1rem; font-weight: 600; color: var(--white); }
+  .booking-card .bc-action { font-size: .8rem; color: var(--gold); margin-top: 4px; }
+
+  .booking-card.wa { border-color: rgba(37,211,102,.3); }
+  .booking-card.wa:hover { border-color: #25D366; }
+  .booking-card.wa .bc-action { color: #25D366; }
+
+  /* ── LOCATION ── */
+  #location {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: start;
+    padding: 90px 6vw;
+  }
+
+  .location-info p { color: var(--grey); font-size: .9rem; line-height: 1.8; margin-bottom: 12px; }
+
+  .info-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(201,168,76,.1);
+  }
+  .info-icon { color: var(--gold); font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+  .info-text { font-size: .9rem; color: var(--grey); line-height: 1.6; }
+  .info-text strong { color: var(--white); display: block; margin-bottom: 2px; }
+
+  .map-embed {
+    width: 100%;
+    height: 380px;
+    border: 1px solid var(--border);
+    filter: grayscale(1) contrast(1.1) invert(1);
+    opacity: .85;
+    border-radius: 2px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark2);
+    border-top: 1px solid var(--border);
+    padding: 50px 6vw 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+  }
+
+  .footer-brand .nav-logo { font-size: 1.4rem; display: block; margin-bottom: 12px; }
+  .footer-brand p { color: var(--grey); font-size: .85rem; line-height: 1.7; max-width: 240px; }
+
+  footer h4 { font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  footer ul { list-style: none; }
+  footer ul li { margin-bottom: 10px; }
+  footer ul a { color: var(--grey); font-size: .88rem; text-decoration: none; transition: color .2s; }
+  footer ul a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    padding-top: 24px;
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: .78rem;
+    color: rgba(136,136,128,.6);
+  }
+
+  /* ── FLOATING WHATSAPP ── */
+  .wa-float {
+    position: fixed;
+    bottom: 28px; right: 24px;
+    z-index: 200;
+    width: 56px; height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 24px rgba(37,211,102,.4);
+    text-decoration: none;
+    animation: waPulse 2.5s ease infinite;
+    transition: transform .2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+  .wa-float svg { width: 28px; height: 28px; fill: white; }
+  @keyframes waPulse {
+    0%, 100% { box-shadow: 0 4px 24px rgba(37,211,102,.4); }
+    50% { box-shadow: 0 4px 40px rgba(37,211,102,.7); }
+  }
+
+  /* ── MOBILE NAV MENU ── */
+  .mobile-menu {
+    display: none;
+    position: fixed; inset: 0; z-index: 99;
+    background: rgba(10,10,10,.97);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--white);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+  .mobile-close {
+    position: absolute; top: 24px; right: 24px;
+    background: none; border: none;
+    color: var(--grey); font-size: 2rem; cursor: pointer;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 5vw; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    #hero { padding: 0 5vw 70px; min-height: 100svh; }
+    .hero-rating { right: 5vw; bottom: 70px; }
+
+    #about {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 70px 5vw;
+    }
+    .about-images {
+      grid-template-rows: 180px 180px;
+    }
+
+    #location {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 70px 5vw;
+    }
+    .map-embed { height: 260px; }
+
+    footer {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 40px 5vw 24px;
+    }
+
+    section { padding: 70px 5vw; }
+
+    .booking-cards { flex-direction: column; }
+    .booking-card { min-width: unset; }
+
+    .stat-row { gap: 28px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-content h1 { font-size: 3.2rem; }
+    .hero-btns { flex-direction: column; }
+    .btn-primary, .btn-whatsapp { justify-content: center; }
+    .hero-rating { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">CROSS <span>HAIR</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="tel:+923111109192" class="nav-cta">Book Now</a></li>
+  </ul>
+  <div class="hamburger" onclick="openMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#reviews" onclick="closeMenu()">Reviews</a>
+  <a href="#location" onclick="closeMenu()">Location</a>
+  <a href="tel:+923111109192" onclick="closeMenu()" style="color:var(--gold)">📞 Call to Book</a>
+  <a href="https://wa.me/923111109192?text=Hi%20Cross%20Hair%20Studio%2C%20I%27d%20like%20to%20book%20an%20appointment." onclick="closeMenu()" style="color:#25D366">💬 WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Ghauri Town, Islamabad</div>
+    <h1>Where <em>Sharp</em><br>Meets Style</h1>
+    <p class="hero-sub">Premium cuts, precise beard trims & expert grooming — crafted for the modern gentleman of Islamabad.</p>
+    <div class="hero-btns">
+      <a href="tel:+923111109192" class="btn-primary">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.78 19.79 19.79 0 01.04 1.17 2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+        Call to Book
+      </a>
+      <a href="https://wa.me/923111109192?text=Hi%20Cross%20Hair%20Studio%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" class="btn-whatsapp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.057.522 4.003 1.432 5.713L.072 23.927a.5.5 0 00.601.601l6.214-1.36A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.804 9.804 0 01-5.032-1.384l-.36-.214-3.724.815.831-3.63-.235-.373A9.797 9.797 0 012.182 12C2.182 6.574 6.574 2.182 12 2.182c5.426 0 9.818 4.392 9.818 9.818 0 5.426-4.392 9.818-9.818 9.818z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+  </div>
+  <div class="hero-rating">
+    <div class="rating-num">4.7</div>
+    <div class="stars">★★★★★</div>
+    <div class="rating-label">210 Google Reviews</div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">HAIRCUT</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">BEARD TRIM</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">FACE POLISH</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">HAIR POLISHING</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">FADE CUTS</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">PREMIUM GROOMING</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">ISLAMABAD'S FINEST</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">HAIRCUT</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">BEARD TRIM</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">FACE POLISH</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">HAIR POLISHING</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">FADE CUTS</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">PREMIUM GROOMING</span><span class="marquee-item marquee-dot">◆</span>
+    <span class="marquee-item">ISLAMABAD'S FINEST</span><span class="marquee-item marquee-dot">◆</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-intro">
+    <div class="section-eyebrow">What We Do</div>
+    <h2 class="section-title">Crafted for the<br>Modern Man</h2>
+    <div class="gold-line"></div>
+    <p>Every service at Cross Hair Studio is performed with precision, quality products, and a genuine care for your style. Walk in. Walk out sharper.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">✂️</span>
+      <h3>Precision Haircut</h3>
+      <p>Tailored to your face shape and lifestyle. Classic, modern, or custom — we cut with purpose and intention.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🪒</span>
+      <h3>Beard Trim & Shape</h3>
+      <p>Clean lines, sharp edges. Whether you want a stubble tidy or a full beard sculpture, we've got the blade for it.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">✨</span>
+      <h3>Face Cleaning</h3>
+      <p>Deep cleanse and skin refresh. Leave with a clear, revitalized complexion that matches your fresh cut.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">💆</span>
+      <h3>Hair Polishing</h3>
+      <p>Restore shine and health to your hair with our professional polishing treatment. Looks great, feels better.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🎨</span>
+      <h3>Fade Cuts</h3>
+      <p>From skin fades to mid-fades, our barbers blend with precision to achieve the gradient you're after.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">👑</span>
+      <h3>Full Grooming Package</h3>
+      <p>The complete treatment — haircut, beard, face clean, and polish. Walk out looking like you own the room.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-images">
+    <img src="https://images.unsplash.com/photo-1587909209111-5097ee578ec3?w=600&q=80" alt="Barber at work" class="about-img about-img-tall" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&q=80" alt="Classic barber tools" class="about-img" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Barber styling hair" class="about-img" loading="lazy">
+  </div>
+  <div class="about-text">
+    <div class="section-eyebrow">Our Story</div>
+    <h2 class="section-title">More Than a<br>Haircut</h2>
+    <div class="gold-line"></div>
+    <p>Cross Hair Studio was built on one belief: every man deserves a barber who actually listens. Located in the heart of Ghauri Town Phase 5, we've served the gentlemen of Islamabad with skill, warmth, and precision.</p>
+    <p>Our team doesn't just cut hair — they consult, advise, and deliver. Usman, Nomann, and the crew bring professional technique and a passion for clean, confident style to every chair.</p>
+    <div class="stat-row">
+      <div class="stat">
+        <h4>4.7★</h4>
+        <p>Google Rating</p>
+      </div>
+      <div class="stat">
+        <h4>210+</h4>
+        <p>Reviews</p>
+      </div>
+      <div class="stat">
+        <h4>100%</h4>
+        <p>Satisfaction Goal</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-eyebrow">Client Reviews</div>
+  <h2 class="section-title">What Our Clients Say</h2>
+  <div class="gold-line"></div>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <span class="review-quote">"</span>
+      <p class="review-text">Mr. Nomann done my hair cut, beard cut, face cleaning and hair polishing — such a nice person, professional in all work, good advisor, good knowledge of products, timely output. Setting area of Cross Hair is outclass.</p>
+      <div class="review-author">
+        <div class="author-avatar">V</div>
+        <div>
+          <div class="author-name">Verified Visitor</div>
+          <div class="author-meta">First Visit</div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <span class="review-quote">"</span>
+      <p class="review-text">Usman offers the best hair cuts and face polish services. Very helpful and truly cares about his customers. Excellent service, great attention to detail — highly recommended for anyone looking for quality grooming!</p>
+      <div class="review-author">
+        <div class="author-avatar">MA</div>
+        <div>
+          <div class="author-name">Muhammad Ahmad</div>
+          <div class="author-meta">Local Client</div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <span class="review-quote">"</span>
+      <p class="review-text">I always go to Usman bhai for my haircut, and honestly he is the best! He understands exactly what style I want and makes sure it suits my face. Very professional, friendly, and skilled. Every time I leave, I feel fresh.</p>
+      <div class="review-author">
+        <div class="author-avatar">AR</div>
+        <div>
+          <div class="author-name">Abdul Rahim</div>
+          <div class="author-meta">Regular Client</div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://maps.google.com/?q=Cross+Hair+Studio+Ghauri+Town+Islamabad" target="_blank" class="google-badge">
+    <div class="google-g">G</div>
+    <span>210 reviews on Google Maps · 4.7 stars</span>
+  </a>
+</section>
+
+<!-- BOOKING CTA -->
+<section id="booking">
+  <div class="section-eyebrow">Ready?</div>
+  <h2>Book Your Session<br><em style="font-style:italic;color:var(--gold)">Today.</em></h2>
+  <p>Walk-ins welcome. For guaranteed availability, call us or drop a WhatsApp message — we'll confirm your slot in minutes.</p>
+  <div class="booking-cards">
+    <a href="tel:+923111109192" class="booking-card">
+      <span class="bc-label">Call Us Directly</span>
+      <span class="bc-value">0311 1109192</span>
+      <span class="bc-action">Tap to call →</span>
+    </a>
+    <a href="https://wa.me/923111109192?text=Hi%20Cross%20Hair%20Studio%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" class="booking-card wa">
+      <span class="bc-label">WhatsApp Booking</span>
+      <span class="bc-value">Message Us</span>
+      <span class="bc-action">Open WhatsApp →</span>
+    </a>
+    <div class="booking-card" style="pointer-events:none;opacity:.7">
+      <span class="bc-label">We're Open</span>
+      <span class="bc-value">Until 2:30 AM</span>
+      <span class="bc-action">Late night available</span>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="location-info">
+    <div class="section-eyebrow">Find Us</div>
+    <h2 class="section-title">Come Visit<br>the Studio</h2>
+    <div class="gold-line"></div>
+
+    <div class="info-item">
+      <span class="info-icon">📍</span>
+      <div class="info-text">
+        <strong>Address</strong>
+        Ghori Town Rd, Phase 5 Ghauri Town,<br>Islamabad, Pakistan
+      </div>
+    </div>
+    <div class="info-item">
+      <span class="info-icon">📞</span>
+      <div class="info-text">
+        <strong>Phone</strong>
+        <a href="tel:+923111109192" style="color:var(--gold);text-decoration:none">+92 311 1109192</a>
+      </div>
+    </div>
+    <div class="info-item">
+      <span class="info-icon">⏰</span>
+      <div class="info-text">
+        <strong>Hours</strong>
+        Open Daily · Closes 2:30 AM
+      </div>
+    </div>
+    <div class="info-item">
+      <span class="info-icon">💬</span>
+      <div class="info-text">
+        <strong>WhatsApp</strong>
+        <a href="https://wa.me/923111109192?text=Hi%20Cross%20Hair%20Studio%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" style="color:#25D366;text-decoration:none">Send us a message</a>
+      </div>
+    </div>
+  </div>
+
+  <iframe
+    class="map-embed"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3316.4!2d73.0!3d33.65!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbef2c0000001%3A0x1!2sCross+Hair+Studio%2C+Ghauri+Town+Phase+5%2C+Islamabad!5e0!3m2!1sen!2spk!4v1"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title="Cross Hair Studio Location">
+  </iframe>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="#" class="nav-logo">CROSS <span>HAIR</span></a>
+    <p>Premium barbershop in Ghauri Town, Islamabad. Crafted cuts, clean shaves, elevated grooming.</p>
+  </div>
+  <div>
+    <h4>Services</h4>
+    <ul>
+      <li><a href="#services">Haircut</a></li>
+      <li><a href="#services">Beard Trim</a></li>
+      <li><a href="#services">Face Cleaning</a></li>
+      <li><a href="#services">Hair Polishing</a></li>
+      <li><a href="#services">Fade Cuts</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Contact</h4>
+    <ul>
+      <li><a href="tel:+923111109192">0311 1109192</a></li>
+      <li><a href="https://wa.me/923111109192" target="_blank">WhatsApp</a></li>
+      <li><a href="#location">Ghauri Town Ph 5</a></li>
+      <li><a href="#reviews">210 Google Reviews</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Cross Hair Studio · Islamabad, Pakistan</span>
+    <span>Built with ❤ by MS Tech</span>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/923111109192?text=Hi%20Cross%20Hair%20Studio%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" class="wa-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.057.522 4.003 1.432 5.713L.072 23.927a.5.5 0 00.601.601l6.214-1.36A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.804 9.804 0 01-5.032-1.384l-.36-.214-3.724.815.831-3.63-.235-.373A9.797 9.797 0 012.182 12C2.182 6.574 6.574 2.182 12 2.182c5.426 0 9.818 4.392 9.818 9.818 0 5.426-4.392 9.818-9.818 9.818z"/>
+  </svg>
+</a>
+
+<script>
+  function openMenu() {
+    document.getElementById('mobileMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Nav shadow on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(10,10,10,.97)';
+    } else {
+      nav.style.background = 'linear-gradient(to bottom, rgba(10,10,10,.95) 0%, transparent 100%)';
+    }
+  });
+
+  // Smooth appear on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .review-card, .booking-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
